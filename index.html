@@ -286,9 +286,9 @@
     function sendDiscordWebhook(number, discordId, customNickname) {
       let content;
       if (customNickname) {
-        content = `${customNickname} a trouvé le nombre secret : ${number} ! ||<@${discordId}>||`;
+        content = `${customNickname} a trouvé le nombre secret !`;
       } else {
-        content = `<@${discordId}> a trouvé le nombre secret : ${number} !`;
+        content = `<@${discordId}> a trouvé le nombre secret !`;
       }
       const data = { content };
 
@@ -314,8 +314,8 @@
         username: "Vérificateur de Nombre Secret",
         avatar_url: "https://example.com/bot-avatar.png",
         embeds: [{
-          title: "Victoire !",
-          description: "Vous avez résolu l'énigme avec brio.",
+          title: "Bravo !",
+          description: "# <@${discordId}> a résolu l'énigme avec brio.",
           color: 5814783,
           footer: {
             text: "Merci d'avoir participé à notre jeu !"
