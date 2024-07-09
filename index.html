@@ -1,67 +1,367 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ashps</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3255012924768211"
-     crossorigin="anonymous"></script>
-</head>
-
-<body>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3255012924768211"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-3255012924768211"
-     data-ad-slot="3894898079"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-</body>
-
-</html>
-
-
-<function class="uptime">
-  <link rel="stylesheet" href="3Dcard.css">
-  <a class="btn" href="#">I am a button</a>
-  <link rel="stylesheet" href="i_am_a_button.css">
-
-  <div class="input-container"><input type="text" placeholder="Add Item"><button class="button">Add</button></div>
-  <link rel="stylesheet" href="additem.css">
-
-  <div class="parent">
-    <div class="card">
-      <div class="content-box"><span class="card-title">Exemple</span>
-        <p class="card-content">Exemple</p><span
-          class="voir-plus">Voir plus</span>
+<html><head><base href="https://websim.ai" /><title>Vérificateur de Nombre Secret</title><style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  .container {
+    background-color: #2a2a2a;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    z-index: 1;
+  }
+  h1 {
+    margin-bottom: 1rem;
+  }
+  input {
+    background-color: #3a3a3a;
+    border: 1px solid #4a4a4a;
+    color: #f0f0f0;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #message {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+  .help-text {
+    font-size: 0.8rem;
+    color: #3498db;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .tab {
+    display: none;
+  }
+  .tab.active {
+    display: block;
+  }
+  .no-id-button {
+    background-color: #e74c3c;
+    margin-top: 1rem;
+  }
+  .no-id-button:hover {
+    background-color: #c0392b;
+  }
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .icon-button {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  .shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  #spotify-window {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 380px;
+    background-color: #282828;
+    border: 1px solid #1db954;
+    border-radius: 8px;
+    overflow: hidden;
+    resize: both;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 800px;
+    max-height: 800px;
+    z-index: 1000;
+  }
+  #spotify-header {
+    background-color: #1db954;
+    color: white;
+    padding: 5px 10px;
+    cursor: move;
+    user-select: none;
+  }
+  #spotify-iframe {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+  }
+</style></head><body>
+  <div class="container">
+    <div class="navigation">
+      <button class="icon-button" onclick="showIdTab()">🏠</button>
+      <button class="icon-button" onclick="showSettingsTab()">⚙️</button>
+    </div>
+    <h1>Vérificateur de Nombre Secret</h1>
+    <div id="idTab" class="tab active">
+      <div class="input-group">
+        <label for="discordId">Votre ID Discord :</label>
+        <input type="text" id="discordId" placeholder="Entrez votre ID Discord">
       </div>
+      <div class="help-text" onclick="window.open('https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID', '_blank')">Je ne trouve pas mon ID</div>
+      <button onclick="validateId()">Valider</button>
+      <button class="no-id-button" onclick="showNoIdPage()">Je ne souhaite pas partager mon ID</button>
+    </div>
+    <div id="numberTab" class="tab">
+      <div class="input-group">
+        <label for="numberInput">Nombre secret :</label>
+        <input type="number" id="numberInput" placeholder="Entrez jusqu'à 2 nombres" min="0" max="99">
+      </div>
+      <button onclick="checkNumber()">Vérifier</button>
+      <div id="message"></div>
+    </div>
+    <div id="noIdPage" class="tab">
+      <h2>ID Discord requis</h2>
+      <p>Désolé, il n'est pas possible d'utiliser ce service sans fournir votre ID Discord. L'ID est nécessaire pour vous identifier en cas de succès.</p>
+      <button onclick="showIdTab()">Retour</button>
+    </div>
+    <div id="settingsTab" class="tab">
+      <h2>Paramètres</h2>
+      <div class="input-group">
+        <label for="settingsDiscordId">ID Discord :</label>
+        <input type="text" id="settingsDiscordId">
+      </div>
+      <div class="input-group">
+        <label for="customNickname">Pseudo personnalisé :</label>
+        <input type="text" id="customNickname" placeholder="Laissez vide pour utiliser l'ID">
+      </div>
+      <button onclick="saveSettings()">Enregistrer</button>
     </div>
   </div>
-</function>
 
-
-
-<link rel="stylesheet" href="Card.css">
-<div class="card1">
-  <div class="main-content">
-    <div class="header">
-      <span>Article on</span>
-      <span>29-June-2023</span>
-    </div>
-    <p class="ing">Different ways to use CSS in React</p>
-    <div class="categories">
-      <span>React</span>
-      <span>Css</span>
-    </div>
+  <div id="spotify-window">
+    <div id="spotify-header">Spotify Playlist</div>
+    <iframe id="spotify-iframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWVuV87wUBNwc" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
-  <div class="footer">
-    by Awiten
-  </div>
-</div>
 
+  <script>
+    const webhookUrl = "https://discord.com/api/webhooks/1260047357366636566/QqgeXg0JIl-Gx9wBCgk4Svu9L01Sx7mQ0PMDMylCk3J-cYNP6snqFStjAxk8BMqx9X1D";
+    let userDiscordId = "";
+    let userCustomNickname = "";
+
+    // Hachage SHA256 du nombre secret (42)
+    const hashedSecretNumber = "73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049";
+
+    const errorMessages = [
+      "Désolé, ce n'est pas le bon nombre. Essayez encore !",
+      "Pas tout à fait ! Tentez une autre combinaison.",
+      "Hmm, ce n'est pas ça. Peut-être un peu plus haut... ou plus bas ?",
+      "Presque ! Mais pas tout à fait. Continuez d'essayer !",
+      "Ce n'est pas le bon nombre, mais ne vous découragez pas !",
+      "Pas de chance cette fois-ci. Que diriez-vous d'un autre essai ?",
+      "Ce n'est pas le nombre secret, mais vous vous en rapprochez peut-être !",
+      "Bien tenté, mais ce n'est pas encore ça. Gardez espoir !",
+      "Pas exactement, mais chaque essai vous rapproche de la solution !",
+      "Ce n'est pas le bon nombre, mais qui sait ? Le prochain pourrait être le bon !"
+    ];
+
+    function sha256(message) {
+      return CryptoJS.SHA256(message).toString();
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function validateId() {
+      const discordId = document.getElementById("discordId").value.trim();
+      if (discordId) {
+        userDiscordId = discordId;
+        showTab('numberTab');
+      } else {
+        alert("Veuillez entrer votre ID Discord.");
+      }
+    }
+
+    function showNoIdPage() {
+      showTab('noIdPage');
+    }
+
+    function showIdTab() {
+      showTab('idTab');
+    }
+
+    function showSettingsTab() {
+      document.getElementById("settingsDiscordId").value = userDiscordId;
+      document.getElementById("customNickname").value = userCustomNickname;
+      showTab('settingsTab');
+    }
+
+    function saveSettings() {
+      userDiscordId = document.getElementById("settingsDiscordId").value.trim();
+      userCustomNickname = document.getElementById("customNickname").value.trim();
+      showTab('numberTab');
+    }
+
+    function checkNumber() {
+      const input = document.getElementById("numberInput").value;
+      const message = document.getElementById("message");
+      const hashedInput = sha256(input);
+
+      if (hashedInput === hashedSecretNumber) {
+        message.textContent = "Bravo ! Vous avez trouvé le bon nombre !";
+        message.style.color = "#4CAF50";
+        sendDiscordWebhook(input, userDiscordId, userCustomNickname);
+        sendPrivateMessage(userDiscordId, input);
+      } else {
+        const randomErrorMessage = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+        message.textContent = randomErrorMessage;
+        message.style.color = "#ff4444";
+        message.classList.remove("shake");
+        void message.offsetWidth; // Trigger reflow
+        message.classList.add("shake");
+      }
+    }
+
+    function sendDiscordWebhook(number, discordId, customNickname) {
+      let content;
+      if (customNickname) {
+        content = `${customNickname} a trouvé le nombre secret : ${number} ! ||<@${discordId}>||`;
+      } else {
+        content = `<@${discordId}> a trouvé le nombre secret : ${number} !`;
+      }
+      const data = { content };
+
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        if (!response.ok) {
+          console.error("Erreur lors de l'envoi du message Discord");
+        }
+      }).catch(error => {
+        console.error("Erreur lors de l'envoi du message Discord:", error);
+      });
+    }
+
+    function sendPrivateMessage(discordId, number) {
+      const content = `Félicitations ! Vous avez trouvé le nombre secret : ${number}. Bravo pour votre perspicacité !`;
+      const data = {
+        content: content,
+        username: "Vérificateur de Nombre Secret",
+        avatar_url: "https://example.com/bot-avatar.png",
+        embeds: [{
+          title: "Victoire !",
+          description: "Vous avez résolu l'énigme avec brio.",
+          color: 5814783,
+          footer: {
+            text: "Merci d'avoir participé à notre jeu !"
+          }
+        }]
+      };
+
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }).then(response => {
+        if (!response.ok) {
+          console.error("Erreur lors de l'envoi du message privé Discord");
+        }
+      }).catch(error => {
+        console.error("Erreur lors de l'envoi du message privé Discord:", error);
+      });
+    }
+
+    // Spotify window drag functionality
+    const spotifyWindow = document.getElementById('spotify-window');
+    const spotifyHeader = document.getElementById('spotify-header');
+
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    spotifyHeader.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+
+      if (e.target === spotifyHeader) {
+        isDragging = true;
+      }
+    }
+
+    function drag(e) {
+      if (isDragging) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, spotifyWindow);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      isDragging = false;
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</body></html>
