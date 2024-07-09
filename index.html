@@ -109,10 +109,9 @@
     width: 300px;
     height: 380px;
     background-color: #282828;
-    border: 1px solid #1db954;
+    border: 5px solid #1db954;
     border-radius: 8px;
     overflow: hidden;
-    resize: both;
     min-width: 200px;
     min-height: 200px;
     max-width: 800px;
@@ -176,7 +175,7 @@
 
   <div id="spotify-window">
     <div id="spotify-header">Spotify Playlist</div>
-    <iframe id="spotify-iframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWVuV87wUBNwc" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe style="border-radius:0px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWVuV87wUBNwc?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>
 
   <script>
@@ -184,7 +183,7 @@
     let userDiscordId = "";
     let userCustomNickname = "";
 
-    // Hachage SHA256 du nombre secret (42)
+    // Hachage SHA256 du nombre secret
     const hashedSecretNumber = "73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049";
 
     const errorMessages = [
@@ -197,8 +196,27 @@
       "Ce n'est pas le nombre secret, mais vous vous en rapprochez peut-être !",
       "Bien tenté, mais ce n'est pas encore ça. Gardez espoir !",
       "Pas exactement, mais chaque essai vous rapproche de la solution !",
-      "Ce n'est pas le bon nombre, mais qui sait ? Le prochain pourrait être le bon !"
-    ];
+      "Ce n'est pas le bon nombre, mais qui sait ? Le prochain pourrait être le bon !",
+      "Oups, ce n'est pas le bon choix. Essayez à nouveau !",
+      "Pas cette fois-ci ! Continuez, vous êtes sur la bonne voie.",
+      "Encore raté, mais ne baissez pas les bras !",
+      "C'est pas loin ! Essayez encore une fois.",
+      "Pas tout à fait, mais vous y êtes presque !",
+      "Non, ce n'est pas ça. Essayez encore un peu.",
+      "Presque, mais pas tout à fait. Continuez comme ça !",
+      "Ce n'est toujours pas le bon nombre. Ne vous arrêtez pas !",
+      "Dommage, ce n'était pas le bon choix. Un autre essai ?",
+      "Ce n'est pas la bonne réponse, mais persévérez !",
+      "Pas le bon nombre, mais vous y êtes presque !",
+      "Ce n'est pas encore ça. N'abandonnez pas !",
+      "Essayez encore, vous finirez par trouver !",
+      "Pas cette fois, mais chaque tentative vous rapproche.",
+      "Ce n'est pas la bonne combinaison. Courage !",
+      "Vous êtes tout près, mais ce n'est pas encore ça.",
+      "Pas le bon nombre, mais vous allez y arriver !",
+      "Non, ce n'est pas ça. Peut-être un autre essai ?",
+      "Ce n'est pas le bon choix. Continuez, vous pouvez le faire !"
+];
 
     function sha256(message) {
       return CryptoJS.SHA256(message).toString();
