@@ -308,14 +308,14 @@
     }
 
     function sendPrivateMessage(discordId, number) {
-      const content = `Félicitations ! Vous avez trouvé le nombre secret : ${number}. Bravo pour votre perspicacité !`;
+      const content = `Félicitations <@${discordId}>! Vous avez trouvé le nombre secret qui était : ${number}. Bravo pour votre perspicacité !`;
       const data = {
         content: content,
         username: "Vérificateur de Nombre Secret",
         avatar_url: "https://example.com/bot-avatar.png",
         embeds: [{
           title: "Bravo !",
-          description: "# <@${discordId}> a résolu l'énigme avec brio.",
+          description: "# Le nombre secret est trouvé !",
           color: 5814783,
           footer: {
             text: "Merci d'avoir participé à notre jeu !"
