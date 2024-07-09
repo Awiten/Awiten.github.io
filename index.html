@@ -149,7 +149,7 @@
     <div id="numberTab" class="tab">
       <div class="input-group">
         <label for="numberInput">Nombre secret :</label>
-        <input type="number" id="numberInput" placeholder="Entrez jusqu'à 2 nombres" min="0" max="99">
+        <input type="number" id="numberInput" placeholder="Entrez jusqu'à 2 nombres" min="0" max="99" oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2)" onkeypress="handleKeyPress(event)">
       </div>
       <button onclick="checkNumber()">Vérifier</button>
       <div id="message"></div>
@@ -234,6 +234,12 @@
         showTab('numberTab');
       } else {
         alert("Veuillez entrer votre ID Discord.");
+      }
+    }
+
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        checkNumber();
       }
     }
 
