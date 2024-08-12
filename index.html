@@ -397,47 +397,6 @@
     }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script>
-async function handleIPN(ipnData) {
-    const sellauthApiKey = "20766|VH7KEkjwaY6WTWpc6pWZZEZj95LwRe3uXmlV39f38193cd3b";
-    const discordWebhookUrl = "https://discord.com/api/webhooks/1272532330979917950/lhf5ZJzK9lqx2hun8dqtf6A2LHk-lQ6Lq9857DQI-as2RNp_tPqlNYzxoaRI2DWT4O5y";
-    
-    // Envoyer la notification IPN à Discord
-    fetch(discordWebhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: `IPN Received: ${JSON.stringify(ipnData)}` })
-    });
-
-    const payerEmail = ipnData.payer_email;
-    const paymentAmount = ipnData.mc_gross;
-
-    // Rechercher les commandes sur SellAuth
-    const ordersResponse = await fetch(`https://api.sellauth.com/orders?status=pending&email=${payerEmail}`, {
-        headers: { 'Authorization': `Bearer ${sellauthApiKey}` }
-    });
-    const orders = await ordersResponse.json();
-
-    // Valider la commande correspondante
-    for (let i = orders.length - 1; i >= 0; i--) {
-        if (orders[i].amount == paymentAmount) {
-            await fetch(`https://api.sellauth.com/orders/${orders[i].id}/confirm`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${sellauthApiKey}` }
-            });
-            break;
-        }
-    }
-}
-
-// Simuler la réception d'IPN pour test
-document.addEventListener('DOMContentLoaded', function () {
-    const testIPN = {
-        payer_email: 'test@example.com',
-        mc_gross: '10.00'
-    };
-    handleIPN(testIPN);
-});
-</script>
+ 
 
 </body></html>
